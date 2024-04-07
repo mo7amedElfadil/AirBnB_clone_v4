@@ -39,7 +39,6 @@ function handleLocationChange (states, cities) {
 // Function to get the new section
 async function getNewSection (response) {
   const users = await $.get('http://0.0.0.0:5001/api/v1/users/');
-  console.log(users);
   for (const place of response) {
     const article = $('<article></article>');
     article.append('<div class="title_box"><h2>' + place.name + '</h2><div class="price_by_night">$' + place.price_by_night + '</div></div>');
