@@ -21,6 +21,8 @@ function getNewSection (response) {
 
 $(document).ready(function () {
   const amenities = {};
+  const amDict = {};
+
   $('input').change(function () {
     const id = $(this).attr('data-id');
     const name = $(this).attr('data-name');
@@ -51,10 +53,35 @@ $(document).ready(function () {
         if (a.name > b.name) return 1;
         return 0;
       });
+      $('section.places').empty();
       getNewSection(response);
     },
+
     error: function (xhr, status) {
       console.log('error');
     }
+  });
+
+  $('button').click(function () {
+    amDict.amenities = Object.keys(amenities);
+    $.ajax('http://0.0.0.0:5001/api/v1/places_search', {
+      data: JSON.stringify(amDict),
+      contentType: 'application/json',
+      type: 'POST',
+      success: function (response) {
+        response.sort((a, b) => {
+          // Sort by place name in ascending order
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        });
+        $('section.places').empty();
+        getNewSection(response);
+      },
+
+      error: function (xhr, status) {
+        console.log('error');
+      }
+    });
   });
 });
