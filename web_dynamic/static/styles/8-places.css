@@ -99,3 +99,23 @@
 .user {
   margin-bottom: 1.5%;
 }
+
+div.reviews {
+    border-top: 1px solid #DDDDDD;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+div.reviews > h2 {
+    font-size: 16px;
+    display: inline-block;
+
+}
+
+div.reviews > span {
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 7px;
+    right: 30px;
+    margin-left: 10px;
+    display: inline-block;
+}
